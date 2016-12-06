@@ -26,7 +26,7 @@
     "lodash": "^4.17.0",
     "mongo-helpr": "^0.1.8",
     "mongodb": "^2.2.11",
-    "test-helpr": "^0.1.7"
+    "test-helpr": "^0.1.8"
   },
   "devDependencies": {
     "ava": "git+https://github.com/avajs/ava.git#056f227",

@@ -1,6 +1,6 @@
 import debug from 'debug'
 import assert from 'assert'
-import {asTemplate, evalInContext, isLike} from 'test-helpr'
+import {asTemplate, evalInContext, isLike, setState, getRequiredState} from 'test-helpr'
 import {getDb, createIndices} from 'mongo-helpr'
 import {stringify, diffConsole} from 'helpr'
 
@@ -56,6 +56,32 @@ export default function(context) {
         const db = await getDb()
         const actual = await db.collection(collectionName).find(query).toArray()
         dbg('actual=%s', stringify(actual))
+        if (!isLike({expected, actual})) {
+          diffConsole({actual, expected})
+          throw new Error('actual != expected')
+        }
+      }
+    )
+
+    this.When(
+      /^the following aggregation steps execute on the '([^']+)' collection:$/,
+      async function (collectionNameString, stepsString) {
+        const collectionName = evalInContext({js: asTemplate(collectionNameString), context})
+        const steps = evalInContext({js: stepsString, context})
+        dbg('when-aggregation-executes-on: collection=%o, steps=%s', collectionName, JSON.stringify(steps))
+        const db = await getDb()
+        const result = await db.collection(collectionName).aggregate(steps).toArray()
+        dbg('result=%s', stringify(result))
+        setState({result})
+      }
+    )
+
+    this.Then(
+      /^the result should be like:$/,
+      async function (expectedString) {
+        const expected = evalInContext({js: expectedString, context})
+        dbg('the-result-should-be-like: expectedString=%s', JSON.stringify(expected))
+        const actual = getRequiredState('result')
         if (!isLike({expected, actual})) {
           diffConsole({actual, expected})
           throw new Error('actual != expected')
