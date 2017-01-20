@@ -60,8 +60,20 @@ Feature: test
       """
       Then the result should be like:
       """
-        [
-          {_id: 'id-3'},
-          {_id: 'id-2'}
-        ]
+      [
+        {_id: 'id-3'},
+        {_id: 'id-2'}
+      ]
+      """
+
+    Scenario: validator string
+      Given the following validator exists on the '${constants.TEST}' collection:
+      """
+      {name: {$type: 'string'}}
+      """
+
+    Scenario: validator variable
+      Given the following validator exists on the '${constants.TEST}' collection:
+      """
+      constants.validators.test
       """

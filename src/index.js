@@ -1,13 +1,15 @@
-import debug from 'debug'
 import assert from 'assert'
+import debug from 'debug'
 import {asTemplate, evalInContext, isLike, setState, getRequiredState} from 'test-helpr'
-import {getDb, createIndices} from 'mongo-helpr'
+import {getDb, createIndices, createValidator} from 'mongo-helpr'
 import {stringify, diffConsole} from 'helpr'
+
+/* eslint-disable new-cap */
 
 const dbg = debug('test:document:steps')
 
-export default function(context) {
-  return function(){
+export default function (context) {
+  return function () {
     this.Given(
       /^the following documents exist in the '([^']+)' collection:$/,
       async function (collectionNameString, docsString) {
@@ -17,15 +19,13 @@ export default function(context) {
           dbg('given-docs-exist: collection=%o, docs=%o', collectionName, docs)
           const db = await getDb()
           const bulk = db.collection(collectionName).initializeUnorderedBulkOp()
-          docs.map((elt)=>{
-            bulk.insert(elt)
-          })
+          docs.map(elt => bulk.insert(elt))
           const result = await bulk.execute()
           assert(result.ok)
           dbg('given-docs-exist: inserted=%o', result.nInserted)
-        } catch (error) {
-          dbg('given-docs-exist: caught error=%o', error)
-          throw error
+        } catch (err) {
+          dbg('given-docs-exist: caught error=%o', err)
+          throw err
         }
       }
     )
@@ -39,9 +39,25 @@ export default function(context) {
           dbg('given-indices-exist: collection=%o, indices=%o', collectionName, indices)
           const db = await getDb()
           createIndices(indices, {collectionName, db})
-        } catch (error) {
-          dbg('given-indices-exist: caught error=%o', error)
-          throw error
+        } catch (err) {
+          dbg('given-indices-exist: caught error=%o', err)
+          throw err
+        }
+      }
+    )
+
+    this.Given(
+      /^the following validator exists on the '([^']+)' collection:$/,
+      async function (collectionNameString, validatorString) {
+        try {
+          const collectionName = evalInContext({js: asTemplate(collectionNameString), context})
+          const validator = evalInContext({js: validatorString, context})
+          dbg('given-validator-exist: collection=%o, validator=%o', collectionName, validator)
+          const db = await getDb()
+          await createValidator({validator, collectionName, db})
+        } catch (err) {
+          dbg('given-validator-exist: caught error=%o', err)
+          throw err
         }
       }
     )
