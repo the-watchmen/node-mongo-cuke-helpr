@@ -38,7 +38,7 @@ export default function (context) {
           const indices = evalInContext({js: indicesString, context})
           dbg('given-indices-exist: collection=%o, indices=%o', collectionName, indices)
           const db = await getDb()
-          createIndices(indices, {collectionName, db})
+          createIndices({indices, collectionName, db})
         } catch (err) {
           dbg('given-indices-exist: caught error=%o', err)
           throw err
