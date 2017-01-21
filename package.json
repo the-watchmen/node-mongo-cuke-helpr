@@ -20,7 +20,7 @@
     "debug": "^2.6.0",
     "helpr": "^0.1.8",
     "lodash": "^4.17.4",
-    "mongo-helpr": "^0.4.3",
+    "mongo-helpr": "^0.4.5",
     "mongodb": "^2.2.21"
   },
   "devDependencies": {
