@@ -18,7 +18,7 @@
   "dependencies": {
     "config": "^1.24.0",
     "debug": "^2.6.0",
-    "helpr": "^0.1.8",
+    "helpr": "^0.12.0",
     "lodash": "^4.17.4",
     "mongo-helpr": "^0.4.5",
     "mongodb": "^2.2.21"

@@ -1,8 +1,8 @@
 import assert from 'assert'
 import debug from 'debug'
-import {asTemplate, evalInContext, isLike, setState, getRequiredState} from 'test-helpr'
+import {asTemplate, evalInContext, setState, getRequiredState} from 'test-helpr'
 import {getDb, createIndices, createValidator} from 'mongo-helpr'
-import {stringify, diffConsole} from 'helpr'
+import {stringify, diffConsole, isLike, isLikeHooks} from 'helpr'
 
 /* eslint-disable new-cap */
 
@@ -72,7 +72,7 @@ export default function (context) {
         const db = await getDb()
         const actual = await db.collection(collectionName).find(query).toArray()
         dbg('actual=%s', stringify(actual))
-        if (!isLike({expected, actual})) {
+        if (!isLike({expected, actual, hooks: [isLikeHooks.assert]})) {
           diffConsole({actual, expected})
           throw new Error('actual != expected')
         }
