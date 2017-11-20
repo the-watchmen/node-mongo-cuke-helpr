@@ -1,17 +1,15 @@
 import debug from 'debug'
-import {getDb} from 'mongo-helpr'
-import {initDb} from 'mongo-test-helpr'
-
-/* eslint-disable new-cap */
+import {getDb} from '@watchmen/mongo-helpr'
+import {initDb} from '@watchmen/mongo-test-helpr'
+import {defineSupportCode} from 'cucumber'
 
 const dbg = debug('test:support:hooks')
 dbg('loaded hooks')
 
-export default function () {
-  // this === World
-  this.Before(async function (scenario) {
+defineSupportCode(function({Before}) {
+  Before(async function() {
     try {
-      dbg('before: scenario=%o', scenario.getName())
+      dbg('before: this=%j', this)
       const db = await getDb()
       await initDb(db)
     } catch (err) {
@@ -19,4 +17,4 @@ export default function () {
       throw err
     }
   })
-}
+})

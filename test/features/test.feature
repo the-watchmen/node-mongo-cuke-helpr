@@ -8,7 +8,7 @@ Feature: test
       {_id: '2'}
     ]
     """
-    Then mongo query "{_id: constants.ONE}" on '${constants.TEST}' should be like:
+    Then mongo query '{_id: constants.ONE}' on '${constants.TEST}' should be like:
     """
       [{_id: constants.ONE, timestamp: 'assert(actual.constructor.name == "Date")'}]
     """
