@@ -1,10 +1,15 @@
 module.exports = {
   extends: ['eslint:recommended', 'prettier'],
-  env: {
-    es6: true
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 2017,
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true
+    }
   },
-  ecmaFeatures: {
-    modules: true
+  env: {
+    es6: true,
+    node: true
   },
   plugins: ['prettier'],
   rules: {
