@@ -136,9 +136,9 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@watchmen/helpr@2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@watchmen/helpr/-/helpr-2.3.2.tgz#730a5184949313a698246c275cfbd545e69b4a0d"
+"@watchmen/helpr@2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@watchmen/helpr/-/helpr-2.3.3.tgz#4527a462f77b8faa071446bb4374857d4e73b4f4"
   dependencies:
     "@watchmen/tymer" "1.2.4"
     debug "3.1.0"

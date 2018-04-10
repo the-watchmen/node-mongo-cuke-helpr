@@ -6,8 +6,10 @@
   "repository": "the-watchmen/node-mongo-cuke-helpr",
   "scripts": {
     "ava": "cross-env DEBUG=test:*,app:* ava test/ava",
-    "cuke": "cross-env DEBUG=test:*,app:* cucumber-js --compiler=js:babel-polyfill --compiler=js:babel-core/register ./test",
-    "cuke-feature": "cross-env DEBUG=test:*,app:* cucumber-js --compiler=js:babel-polyfill --compiler=js:babel-core/register",
+    "cuke":
+      "cross-env DEBUG=test:*,app:* cucumber-js --compiler=js:babel-polyfill --compiler=js:babel-core/register ./test",
+    "cuke-feature":
+      "cross-env DEBUG=test:*,app:* cucumber-js --compiler=js:babel-polyfill --compiler=js:babel-core/register",
     "pretest": "xo",
     "test": "npm run cuke",
     "prebuild": "npm run test",
@@ -16,7 +18,7 @@
   "author": "tony kerz",
   "license": "ISC",
   "dependencies": {
-    "@watchmen/helpr": "2.3.2",
+    "@watchmen/helpr": "2.3.3",
     "@watchmen/mongo-helpr": "1.1.0",
     "config": "1.30.0",
     "debug": "3.1.0",
@@ -46,10 +48,7 @@
   },
   "ava": {
     "babel": "inherit",
-    "require": [
-      "babel-register",
-      "babel-polyfill"
-    ]
+    "require": ["babel-register", "babel-polyfill"]
   },
   "publishConfig": {
     "access": "public"
