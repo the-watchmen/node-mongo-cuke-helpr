@@ -1,6 +1,6 @@
 {
   "name": "@watchmen/mongo-cuke-helpr",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "dist/index.js",
   "repository": "the-watchmen/node-mongo-cuke-helpr",
@@ -16,7 +16,7 @@
   "author": "tony kerz",
   "license": "ISC",
   "dependencies": {
-    "@watchmen/helpr": "2.3.2",
+    "@watchmen/helpr": "2.3.3",
     "@watchmen/mongo-helpr": "1.1.0",
     "config": "1.30.0",
     "debug": "3.1.0",
