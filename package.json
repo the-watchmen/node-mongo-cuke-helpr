@@ -16,7 +16,7 @@
   "author": "tony kerz",
   "license": "ISC",
   "dependencies": {
-    "@watchmen/helpr": "2.3.1",
+    "@watchmen/helpr": "2.3.2",
     "@watchmen/mongo-helpr": "1.1.0",
     "config": "1.30.0",
     "debug": "3.1.0",
